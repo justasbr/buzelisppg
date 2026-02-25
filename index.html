@@ -3,120 +3,186 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Matas Buzelis PPG Projection</title>
+    <title>BUZELIS PPG PROJECTION</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;700;900&display=swap" rel="stylesheet">
     <script src="https://cdn.jsdelivr.net/npm/chart.js@4.4.7/dist/chart.umd.min.js"></script>
     <style>
         * { margin: 0; padding: 0; box-sizing: border-box; }
         body {
-            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
-            background: #0a0e17;
-            color: #e0e0e0;
+            font-family: 'Inter', sans-serif;
+            background: #000;
+            color: #fff;
             min-height: 100vh;
-            display: flex;
-            flex-direction: column;
-            align-items: center;
-            padding: 2rem 1rem;
+            padding: 3rem 1.5rem;
         }
         .container {
-            max-width: 900px;
-            width: 100%;
+            max-width: 880px;
+            margin: 0 auto;
         }
-        h1 {
-            font-size: 1.8rem;
-            font-weight: 700;
-            text-align: center;
-            margin-bottom: 0.3rem;
-            color: #fff;
-        }
-        .subtitle {
-            text-align: center;
-            color: #8892a4;
-            font-size: 0.95rem;
+
+        /* --- HEADER --- */
+        .header {
+            border-bottom: 4px solid #CE1141;
+            padding-bottom: 1.5rem;
             margin-bottom: 2rem;
         }
-        .chart-wrapper {
-            background: #131a2b;
-            border-radius: 16px;
-            padding: 1.5rem;
-            margin-bottom: 1.5rem;
-            border: 1px solid #1e2a42;
-        }
-        .stats-grid {
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(160px, 1fr));
-            gap: 1rem;
-            margin-bottom: 1.5rem;
-        }
-        .stat-card {
-            background: #131a2b;
-            border-radius: 12px;
-            padding: 1.2rem;
-            text-align: center;
-            border: 1px solid #1e2a42;
-        }
-        .stat-value {
-            font-size: 1.8rem;
-            font-weight: 700;
-            color: #60a5fa;
-        }
-        .stat-value.highlight {
-            color: #34d399;
-        }
-        .stat-label {
-            font-size: 0.8rem;
-            color: #8892a4;
-            margin-top: 0.3rem;
+        h1 {
+            font-size: clamp(2.2rem, 6vw, 3.5rem);
+            font-weight: 900;
             text-transform: uppercase;
-            letter-spacing: 0.05em;
+            letter-spacing: -0.02em;
+            line-height: 1;
+            color: #fff;
         }
+        h1 span {
+            color: #CE1141;
+        }
+        .tagline {
+            font-size: 0.85rem;
+            font-weight: 700;
+            text-transform: uppercase;
+            letter-spacing: 0.15em;
+            color: #666;
+            margin-top: 0.6rem;
+        }
+
+        /* --- STAT BLOCKS --- */
+        .stats {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 0;
+            margin-bottom: 2rem;
+            border: 3px solid #fff;
+        }
+        .stat-block {
+            padding: 1.4rem 1rem;
+            text-align: center;
+            border-right: 3px solid #fff;
+        }
+        .stat-block:last-child {
+            border-right: none;
+        }
+        .stat-number {
+            font-size: 2.6rem;
+            font-weight: 900;
+            line-height: 1;
+            color: #fff;
+        }
+        .stat-number.red {
+            color: #CE1141;
+        }
+        .stat-desc {
+            font-size: 0.65rem;
+            font-weight: 700;
+            text-transform: uppercase;
+            letter-spacing: 0.2em;
+            color: #888;
+            margin-top: 0.4rem;
+        }
+
+        /* --- CHART --- */
+        .chart-wrapper {
+            border: 3px solid #fff;
+            padding: 1.5rem;
+            margin-bottom: 2rem;
+            background: #000;
+        }
+
+        /* --- PERCENTILES --- */
         .percentiles {
-            background: #131a2b;
-            border-radius: 12px;
-            padding: 1.2rem 1.5rem;
-            border: 1px solid #1e2a42;
             display: flex;
-            justify-content: space-around;
-            flex-wrap: wrap;
-            gap: 0.5rem;
+            justify-content: space-between;
+            border: 3px solid #fff;
+            margin-bottom: 2rem;
         }
         .pct-item {
+            flex: 1;
             text-align: center;
+            padding: 1rem 0.5rem;
+            border-right: 3px solid #fff;
+        }
+        .pct-item:last-child {
+            border-right: none;
         }
         .pct-label {
-            font-size: 0.7rem;
-            color: #8892a4;
+            font-size: 0.6rem;
+            font-weight: 700;
             text-transform: uppercase;
+            letter-spacing: 0.2em;
+            color: #666;
         }
         .pct-value {
-            font-size: 1.1rem;
-            font-weight: 600;
-            color: #c4b5fd;
+            font-size: 1.3rem;
+            font-weight: 900;
+            color: #CE1141;
+            margin-top: 0.2rem;
         }
+
+        /* --- LATEST GAME --- */
+        .latest-game {
+            border: 3px solid #333;
+            padding: 1rem 1.2rem;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 2rem;
+        }
+        .latest-game-label {
+            font-size: 0.6rem;
+            font-weight: 700;
+            text-transform: uppercase;
+            letter-spacing: 0.2em;
+            color: #666;
+        }
+        .latest-game-detail {
+            font-weight: 900;
+            font-size: 1rem;
+            text-transform: uppercase;
+        }
+        .latest-game-detail .loss {
+            color: #CE1141;
+        }
+
+        /* --- FOOTER --- */
         .footer {
-            text-align: center;
-            color: #4a5568;
-            font-size: 0.75rem;
-            margin-top: 2rem;
+            font-size: 0.6rem;
+            font-weight: 700;
+            text-transform: uppercase;
+            letter-spacing: 0.2em;
+            color: #333;
+        }
+
+        @media (max-width: 500px) {
+            .stats { grid-template-columns: 1fr; }
+            .stat-block { border-right: none; border-bottom: 3px solid #fff; }
+            .stat-block:last-child { border-bottom: none; }
+            .percentiles { flex-wrap: wrap; }
+            .pct-item { flex: none; width: 33.33%; border-bottom: 3px solid #fff; }
+            .latest-game { flex-direction: column; gap: 0.5rem; text-align: center; }
         }
     </style>
 </head>
 <body>
     <div class="container">
-        <h1>Matas Buzelis — End-of-Season PPG</h1>
-        <p class="subtitle">Monte Carlo simulation · 10,000 runs · 58 GP, 24 remaining</p>
+        <div class="header">
+            <h1>Matas <span>Buzelis</span></h1>
+            <h1>PPG Projection</h1>
+            <div class="tagline">Monte Carlo &middot; 10,000 Simulations &middot; 58 GP / 24 Remaining</div>
+        </div>
 
-        <div class="stats-grid">
-            <div class="stat-card">
-                <div class="stat-value">15.0</div>
-                <div class="stat-label">Current PPG</div>
+        <div class="stats">
+            <div class="stat-block">
+                <div class="stat-number">15.0</div>
+                <div class="stat-desc">Current PPG</div>
             </div>
-            <div class="stat-card">
-                <div class="stat-value">15.37</div>
-                <div class="stat-label">Projected (Median)</div>
+            <div class="stat-block">
+                <div class="stat-number">15.37</div>
+                <div class="stat-desc">Projected Median</div>
             </div>
-            <div class="stat-card">
-                <div class="stat-value highlight">84.7%</div>
-                <div class="stat-label">P(≥ 15 PPG)</div>
+            <div class="stat-block">
+                <div class="stat-number red">84.7%</div>
+                <div class="stat-desc">P(&ge; 15 PPG)</div>
             </div>
         </div>
 
@@ -132,7 +198,18 @@
             <div class="pct-item"><div class="pct-label">95th</div><div class="pct-value">15.96</div></div>
         </div>
 
-        <p class="footer">Data from Basketball Reference · Simulation run Feb 25, 2026</p>
+        <div class="latest-game">
+            <div>
+                <div class="latest-game-label">Latest Game in Model</div>
+                <div class="latest-game-detail">
+                    Feb 22, 2026 &mdash; vs NYK &mdash; 15 PTS &mdash; <span class="loss">L 99-105</span>
+                </div>
+            </div>
+        </div>
+
+        <div class="footer">
+            Data from Basketball Reference &middot; Feb 25, 2026
+        </div>
     </div>
 
     <script>
@@ -149,15 +226,14 @@
             0.6,0.5,0.2,0.2
         ];
 
-        // Color bars: below 15 = muted blue, at/above 15 = green-ish
         const threshold = 15.0;
         const colors = labels.map(l => parseFloat(l) >= threshold
-            ? 'rgba(52, 211, 153, 0.7)'
-            : 'rgba(96, 165, 250, 0.45)'
+            ? 'rgba(206, 17, 65, 0.85)'
+            : 'rgba(255, 255, 255, 0.2)'
         );
         const borderColors = labels.map(l => parseFloat(l) >= threshold
-            ? 'rgba(52, 211, 153, 1)'
-            : 'rgba(96, 165, 250, 0.8)'
+            ? '#CE1141'
+            : 'rgba(255, 255, 255, 0.5)'
         );
 
         const ctx = document.getElementById('bellCurve').getContext('2d');
@@ -169,8 +245,8 @@
                     data,
                     backgroundColor: colors,
                     borderColor: borderColors,
-                    borderWidth: 1,
-                    borderRadius: 3,
+                    borderWidth: 2,
+                    borderRadius: 0,
                 }]
             },
             options: {
@@ -182,28 +258,43 @@
                     tooltip: {
                         callbacks: {
                             title: ctx => `${ctx[0].label} PPG`,
-                            label: ctx => `${ctx.raw}% of simulations`
+                            label: ctx => `${ctx.raw}%`
                         },
-                        backgroundColor: '#1e2a42',
-                        titleColor: '#fff',
-                        bodyColor: '#c4b5fd',
-                        borderColor: '#334155',
-                        borderWidth: 1,
-                        cornerRadius: 8,
+                        backgroundColor: '#000',
+                        titleColor: '#CE1141',
+                        titleFont: { weight: 900 },
+                        bodyColor: '#fff',
+                        bodyFont: { weight: 700 },
+                        borderColor: '#CE1141',
+                        borderWidth: 2,
+                        cornerRadius: 0,
                         padding: 10
-                    },
-                    annotation: undefined
+                    }
                 },
                 scales: {
                     x: {
-                        title: { display: true, text: 'Projected Season PPG', color: '#8892a4', font: { size: 13 } },
-                        ticks: { color: '#8892a4', maxRotation: 45, autoSkip: true, maxTicksLimit: 14 },
-                        grid: { display: false }
+                        title: {
+                            display: true,
+                            text: 'PROJECTED SEASON PPG',
+                            color: '#666',
+                            font: { size: 11, weight: 700, family: 'Inter' },
+                            padding: { top: 10 }
+                        },
+                        ticks: { color: '#666', font: { weight: 700, size: 10 }, maxRotation: 45, autoSkip: true, maxTicksLimit: 14 },
+                        grid: { display: false },
+                        border: { color: '#fff', width: 2 }
                     },
                     y: {
-                        title: { display: true, text: '% of Simulations', color: '#8892a4', font: { size: 13 } },
-                        ticks: { color: '#8892a4', callback: v => v + '%' },
-                        grid: { color: 'rgba(255,255,255,0.05)' }
+                        title: {
+                            display: true,
+                            text: '% OF SIMULATIONS',
+                            color: '#666',
+                            font: { size: 11, weight: 700, family: 'Inter' },
+                            padding: { bottom: 10 }
+                        },
+                        ticks: { color: '#666', font: { weight: 700, size: 10 }, callback: v => v + '%' },
+                        grid: { color: 'rgba(255,255,255,0.06)' },
+                        border: { color: '#fff', width: 2 }
                     }
                 }
             }
