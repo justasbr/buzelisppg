@@ -168,20 +168,20 @@
         <div class="header">
             <h1>Matas <span>Buzelis</span></h1>
             <h1>PPG Projection</h1>
-            <div class="tagline">Monte Carlo &middot; 10,000 Simulations &middot; 62 GP / 20 Remaining</div>
+            <div class="tagline">Monte Carlo &middot; 10,000 Simulations &middot; 63 GP / 19 Remaining</div>
         </div>
 
         <div class="stats">
             <div class="stat-block">
-                <div class="stat-number">15.3</div>
+                <div class="stat-number">15.4</div>
                 <div class="stat-desc">Current PPG</div>
             </div>
             <div class="stat-block">
-                <div class="stat-number">15.80</div>
+                <div class="stat-number">15.85</div>
                 <div class="stat-desc">Projected Median</div>
             </div>
             <div class="stat-block">
-                <div class="stat-number red">99.4%</div>
+                <div class="stat-number red">99.6%</div>
                 <div class="stat-desc">P(&ge; 15 PPG)</div>
             </div>
         </div>
@@ -191,37 +191,39 @@
         </div>
 
         <div class="percentiles">
-            <div class="pct-item"><div class="pct-label">5th</div><div class="pct-value">15.26</div></div>
-            <div class="pct-item"><div class="pct-label">25th</div><div class="pct-value">15.57</div></div>
-            <div class="pct-item"><div class="pct-label">50th</div><div class="pct-value">15.80</div></div>
-            <div class="pct-item"><div class="pct-label">75th</div><div class="pct-value">16.04</div></div>
-            <div class="pct-item"><div class="pct-label">95th</div><div class="pct-value">16.38</div></div>
+            <div class="pct-item"><div class="pct-label">5th</div><div class="pct-value">15.32</div></div>
+            <div class="pct-item"><div class="pct-label">25th</div><div class="pct-value">15.62</div></div>
+            <div class="pct-item"><div class="pct-label">50th</div><div class="pct-value">15.85</div></div>
+            <div class="pct-item"><div class="pct-label">75th</div><div class="pct-value">16.07</div></div>
+            <div class="pct-item"><div class="pct-label">95th</div><div class="pct-value">16.40</div></div>
         </div>
 
         <div class="latest-game">
             <div>
                 <div class="latest-game-label">Latest Game in Model</div>
                 <div class="latest-game-detail">
-                    Mar 03, 2026 &mdash; vs OKC &mdash; 11 PTS &mdash; <span class="loss">L 108-116</span>
+                    Mar 08, 2026 &mdash; @ SAC &mdash; 20 PTS &mdash; <span class="loss">L 110-126</span>
                 </div>
             </div>
         </div>
 
         <div class="footer">
-            Data from Basketball Reference &middot; Updated Mar 05, 2026
+            Data from Basketball Reference &middot; Updated Mar 10, 2026
         </div>
     </div>
 
     <script>
         const labels = [
-            '14.8','14.9','14.9','15.0','15.1','15.2','15.3','15.4',
-            '15.5','15.6','15.7','15.8','15.9','16.0','16.1','16.2',
-            '16.3','16.4','16.5','16.6','16.7','16.8','16.9','16.9'
+            '14.8','14.9','15.0','15.1','15.1','15.2','15.3','15.3',
+            '15.4','15.5','15.5','15.6','15.7','15.7','15.8','15.9',
+            '16.0','16.0','16.1','16.2','16.2','16.3','16.4','16.4',
+            '16.5','16.6','16.6','16.7','16.8','16.9'
         ];
         const data = [
-            0.1,0.2,0.3,1.0,1.7,2.9,3.9,6.5,
-            8.3,9.3,10.5,9.8,10.7,9.8,8.1,5.9,
-            3.8,3.1,1.7,1.1,0.5,0.3,0.2,0.1
+            0.1,0.1,0.4,0.5,0.8,1.4,1.9,2.9,
+            4.1,4.2,6.3,7.5,6.4,8.6,8.7,8.6,
+            6.7,7.0,5.9,4.4,4.0,3.3,1.9,1.5,
+            1.0,0.5,0.5,0.4,0.2,0.1
         ];
 
         const threshold = 15.0;
